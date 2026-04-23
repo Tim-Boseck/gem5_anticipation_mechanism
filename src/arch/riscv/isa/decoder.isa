@@ -535,6 +535,15 @@ decode QUADRANT default Unknown::unknown() {
         }
     }
     0x3: decode OPCODE5 {
+    // BUNDLEP Begin
+        0x1A: decode FUNCT3 {
+            format ROp {
+                0x0: decode FUNCT7 {
+                    0x01: mod({{ Rd = Rs1_sd % Rs2_sd; }});
+                }
+            }
+        }
+    // BUNDLEP End
         0x00: decode FUNCT3 {
             format Load {
                 0x0: lb({{
