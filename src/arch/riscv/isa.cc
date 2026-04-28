@@ -205,6 +205,17 @@ const std::array<const char *, NUM_MISCREGS> MiscRegNames = {{
     [MISCREG_VL]            = "VL",
     [MISCREG_VTYPE]         = "VTYPE",
     [MISCREG_VLENB]         = "VLENB",
+	
+	// Begin Anticipation Mechanism
+    [MISCREG_APSTATUS]      = "apstatus",
+    [MISCREG_APLASTEX]      = "aplastex",
+    [MISCREG_APEPC]         = "apepc",
+    [MISCREG_APSCRATCH]     = "apscratch",
+    [MISCREG_APSELECT]      = "apselect",
+    [MISCREG_APCTRL]        = "apctrl",
+    [MISCREG_APTRIG]        = "aptrig",
+    [MISCREG_APTAR]         = "aptar",
+	// End Anticipation Mechanism
 
     // H-extension (RV64) registers
 
