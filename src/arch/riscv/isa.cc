@@ -674,6 +674,18 @@ ISA::readMiscReg(RegIndex idx)
             return readMiscRegNoEffect(MISCREG_FFLAGS) & FFLAGS_MASK;
         }
 
+      // Begin Anticipation Mechanism - ADD THIS BLOCK
+      case MISCREG_APSTATUS:
+      case MISCREG_APLASTEX:
+      case MISCREG_APEPC:
+      case MISCREG_APSCRATCH:
+      case MISCREG_APSELECT:
+      case MISCREG_APCTRL:
+      case MISCREG_APTRIG:
+      case MISCREG_APTAR:
+      // Intentionally fall through to the default case
+      // End Anticipation Mechanism
+
       default:
         // Try reading HPM counters
         // As a placeholder, all HPM counters are just cycle counters
@@ -976,6 +988,19 @@ ISA::setMiscReg(RegIndex idx, RegVal val)
                 setMiscRegNoEffect(MISCREG_FFLAGS, new_val);
             }
             break;
+			
+          // Begin Anticipation Mechanism - ADD THIS BLOCK
+          case MISCREG_APSTATUS:
+          case MISCREG_APLASTEX:
+          case MISCREG_APEPC:
+          case MISCREG_APSCRATCH:
+          case MISCREG_APSELECT:
+          case MISCREG_APCTRL:
+          case MISCREG_APTRIG:
+          case MISCREG_APTAR:
+          // Intentionally fall through to the default case
+          // End Anticipation Mechanism		
+		  
           default:
             setMiscRegNoEffect(idx, val);
         }
