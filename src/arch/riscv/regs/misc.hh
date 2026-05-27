@@ -292,6 +292,9 @@ enum MiscRegIndex
     MISCREG_HPMCOUNTER31H,
     MISCREG_JVT,
 
+    /* BUNDLE */
+    MISCREG_APSTATUS,
+
     NUM_PHYS_MISCREGS,
     MISCREG_FFLAGS_EXE = NUM_PHYS_MISCREGS,
 
@@ -573,9 +576,12 @@ enum CSRIndex
     CSR_VSCAUSE   = 0x242,
     CSR_VSTVAL    = 0x243,
     CSR_VSIP      = 0x244,
-    CSR_VSATP     = 0x280
+    CSR_VSATP     = 0x280,
 
     // H-extension (RV64) CSRs end here
+
+    // Bundle Extension
+    CSR_APSTATUS = 0x800
 };
 
 struct CSRMetadata
@@ -1321,6 +1327,10 @@ const std::unordered_map<int, CSRMetadata> CSRData = {
     {CSR_VSATP,
         {"vsatp", MISCREG_VSATP, rvTypeFlags(RV64),
         isaExtsFlags('h')}},
+    /* Bundle */
+    {CSR_APSTATUS,
+        {"apstatus", MISCREG_APSTATUS, rvTypeFlags(RV64, RV32),
+        isaExtsFlags()}},
 };
 
 /**

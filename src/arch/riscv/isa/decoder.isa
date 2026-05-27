@@ -543,6 +543,12 @@ decode QUADRANT default Unknown::unknown() {
                 }
             }
         }
+
+        0x02: JOp::apret({{
+            Rd = rvSext(NPC);
+            NPC = rvSext(PC + imm);
+        }}, IsDirectControl, IsUncondControl);
+
     // BUNDLEP End
         0x00: decode FUNCT3 {
             format Load {

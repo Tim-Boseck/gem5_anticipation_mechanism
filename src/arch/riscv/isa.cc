@@ -283,8 +283,12 @@ const std::array<const char *, NUM_MISCREGS> MiscRegNames = {{
     [MISCREG_HPMCOUNTER31H]  = "HPMCOUNTER31H",
 
     [MISCREG_JVT] = "JVT",
+    
+    /* BUNDLE */
+    [MISCREG_APSTATUS] = "APSTATUS",
 
     [MISCREG_FFLAGS_EXE]    = "FFLAGS_EXE",
+    
 }};
 
 namespace
