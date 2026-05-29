@@ -283,6 +283,17 @@ const std::array<const char *, NUM_MISCREGS> MiscRegNames = {{
     [MISCREG_HPMCOUNTER31H]  = "HPMCOUNTER31H",
 
     [MISCREG_JVT] = "JVT",
+    
+	// Begin Anticipation Mechanism - ADD THIS BLOCK
+    [MISCREG_APSTATUS] = "APSTATUS",
+	[MISCREG_APLASTEX] = "APLASTEX",
+	[MISCREG_APEPC] = "APEPC",
+	[MISCREG_APSCRATCH] = "APSCRATCH",
+	[MISCREG_APSELECT] = "APSELECT",
+	[MISCREG_APCTRL] = "APCTRL",
+	[MISCREG_APTRIG] = "APTRIG",
+	[MISCREG_APTAR] = "APTAR",
+	// End Anticipation Mechanism
 
     [MISCREG_FFLAGS_EXE]    = "FFLAGS_EXE",
 }};
@@ -674,18 +685,6 @@ ISA::readMiscReg(RegIndex idx)
             return readMiscRegNoEffect(MISCREG_FFLAGS) & FFLAGS_MASK;
         }
 
-      // Begin Anticipation Mechanism - ADD THIS BLOCK
-      case MISCREG_APSTATUS:
-      case MISCREG_APLASTEX:
-      case MISCREG_APEPC:
-      case MISCREG_APSCRATCH:
-      case MISCREG_APSELECT:
-      case MISCREG_APCTRL:
-      case MISCREG_APTRIG:
-      case MISCREG_APTAR:
-      // Intentionally fall through to the default case
-      // End Anticipation Mechanism
-
       default:
         // Try reading HPM counters
         // As a placeholder, all HPM counters are just cycle counters
@@ -988,20 +987,7 @@ ISA::setMiscReg(RegIndex idx, RegVal val)
                 setMiscRegNoEffect(MISCREG_FFLAGS, new_val);
             }
             break;
-			
-          // Begin Anticipation Mechanism - ADD THIS BLOCK
-          case MISCREG_APSTATUS:
-          case MISCREG_APLASTEX:
-          case MISCREG_APEPC:
-          case MISCREG_APSCRATCH:
-          case MISCREG_APSELECT:
-          case MISCREG_APCTRL:
-          case MISCREG_APTRIG:
-          case MISCREG_APTAR:
-          // Intentionally fall through to the default case
-          // End Anticipation Mechanism		
-		  
-          default:
+		  default:
             setMiscRegNoEffect(idx, val);
         }
     }
